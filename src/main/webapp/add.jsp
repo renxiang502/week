@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.8.2.min.js"></script><base>
+<script type="text/javascript">
+	$(function() {
+		$.post("findTeacher.do",function(obj){
+			for(var x in obj){
+				$("#d1").append("<input type='text' name='lao'> values='"+obj[x].tid+"'>"+obj[x].tname);
+			}
+		},"json");
+	});
+</script>
+</head>
+<body>
+	<form action="add.do" method="post">
+		宿舍号:<input type="text" name="id"><br>
+		老师:<select id="d1">
+			
+		</select><br>
+		凉被时间:<input type="text" name="uptime"><br>
+		状态:<select>
+			<option>晾晒中</option>
+			<option>已收被</option>
+		</select><br>
+		<input type="submit" value="提交">
+	</form>	
+</body>
+</html>
